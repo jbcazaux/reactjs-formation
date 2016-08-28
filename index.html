@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReactJS avec TypeScript et ES6</title>
+    <meta charset="utf-8">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+        body {
+            font-family: 'Droid Serif';
+        }
+
+        h1, h2, h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: 400;
+            margin-bottom: 0;
+            margin-top: 10px;
+        }
+
+        h1 {
+            font-size: 3.5em;
+        }
+
+        h2 {
+            font-size: 3em;
+        }
+
+        h3 {
+            font-size: 1.6em;
+        }
+
+        .inverse {
+            background: #272822;
+            color: #777872;
+            text-shadow: 0 0 20px #333;
+        }
+
+        .inverse h1, .inverse h2 {
+            color: #f3f3f3;
+            line-height: 0.8em;
+        }
+
+        pre {
+            border-left: 0.4em solid #d7d7d7;
+            padding: 1em !important;
+        }
+
+        code {
+            background: transparent !important;
+        }
+
+        a {
+            color: #F92672;
+            text-decoration: none;
+        }
+
+        .task {
+            float: right;
+            font-size: 0.9em;
+            padding-top: 0.6em;
+        }
+
+        .task a {
+            color: #080;
+            text-decoration: none;
+        }
+
+        .right {
+            float: right;
+            margin-left: 1em;
+        }
+
+        .pushdown {
+            margin-top: 12em;
+        }
+
+        .remark-code, .remark-inline-code {
+            font-family: 'Ubuntu Mono';
+        }
+    </style>
+</head>
+<body>
+<textarea id="source">
+
+class: center, middle, inverse
+
+# ReactJS
+### avec TypeScript et ES6
+
+#### [@jbcazaux](http://twitter.com/jbcazaux)
+
+---
+
+# Contenu
+
+* ES6
+    * Nouveautés
+    * Rappels sur la programmation fonctionnelle
+* TypeScript
+    * Langage et mots-clés
+* ReactJS
+    * Principes
+    * Composants
+---
+
+class: center, middle, inverse
+
+# EcmaScript 6
+
+---
+
+# EcmaScript 6 - nouveautés
+
+* Pas totalement supporté par les navigateurs : [Tableau de compatibilité](http://www.webbrowsercompatibility.com/es6/desktop/)
+    * Transpiler
+    * Shim
+* ~~var~~, let, const
+```javascript
+    let foo = 'bar';
+    const MAX = 10;
+```
+* Arrow functions
+```javascript
+    let add = (a, b) => {
+        return a + b;
+    }
+    let add = (a, b) => a + b
+```
+---
+
+# EcmaScript 6 - nouveautés
+
+* Spread operator
+```javascript
+    let tab = [1, 2, 3];
+    let arr = arr.push(...tab);
+```
+* Destructuring
+```javascript
+    //TODO
+```
+
+---
+
+# EcmaScript 6 - rappels
+
+* currying
+```javascript
+    let add = function(x) { return function(y) {return x+y}}
+    let add2 = add(2); add2(3); // = ?
+    add(2)(3) // ???
+    let add = x => y => x + y // WTF ?!
+```
+* this
+```javascript
+    function f() {
+        this.foo; // what is this ?
+    }
+```
+---
+
+# TypeScript
+
+* Types de base: [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+* Interface
+```javascript
+    Interface Props = {
+        lat: number,
+        lng: number
+    }
+```
+* Classe
+```javascript
+    class User {
+        constructor(public id: number, public login: string) {}
+    }
+    let user1 = new User(1, 'toto');
+```
+
+    </textarea>
+<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+</script>
+<script>
+    var slideshow = remark.create({highlightLanguage: 'javascript'});
+</script>
+</body>
+</html>
