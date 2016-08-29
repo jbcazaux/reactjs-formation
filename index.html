@@ -194,8 +194,87 @@ class: center, middle, inverse
     toArray(5, 6);
     toArray(5, 'hello'); // Bim !
 ```
+---
+
+class: center, middle, inverse
+
+# React
+---
+
+#Hello world
+```typescript
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+
+import { Hello } from './hello';
+
+ReactDOM.render(
+    <Hello name="world"/>,
+    document.getElementById("app")
+);
+```
+```typescript
+import * as React from 'react';
+
+interface Props { name: string;}
+
+export class Hello extends React.Component<Props, void> {
+    render() {
+        return <h1>Hello {this.props.name}!</h1>;
+    }
+}
+```
+---
+#JSX
+```typescript
+render: function() {
+    return (
+      <li className="contact">
+          <h2 className="contact-name">{this.props.name}</h2>
+      </li>
+    )
+}
+```
+```typescript
+render: function() {
+    return (
+      React.createElement('li', {className: 'contact'},
+        React.createElement('h2', {className: 'contact-name'},
+                                            this.props.name)
+      )
+    )
+}
+```
+---
+#Stateless component
+```typescript
+import * as React from "react";
+
+interface Props { name: string;}
+
+export const Hello = ({name}: Props) => <h1>Hello {name}!</h1>;
+```
 
 ---
+#Create or extends ?
+```typescript
+export const Hello = React.createClass<Props, void>({
+    render: function() {
+        return (
+            <h1>Hello {this.props.name}!</h1>
+        );
+    }
+});
+```
+```typescript
+export class Hello extends React.Component<Props, void>{
+    render() {
+        return (
+            <h1>Hello {this.props.name}!</h1>
+        );
+    }
+}
+```
 
 
 </textarea>
