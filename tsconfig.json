@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "tmp",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "target": "es5",
+    "jsx": "react"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
