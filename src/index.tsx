@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./hello";
+import {ShoppingList} from "./shoppingList";
 
 ReactDOM.render(
-    <Hello name="world"/>,
+    <ShoppingList title="liste de courses"/>,
     document.getElementById("app")
 );

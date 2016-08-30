@@ -44,7 +44,7 @@
 
         pre {
             border-left: 0.4em solid #d7d7d7;
-            padding: 1em !important;
+            padding: .5em !important;
         }
 
         code {
@@ -78,6 +78,10 @@
 
         .remark-code, .remark-inline-code {
             font-family: 'Ubuntu Mono';
+        }
+
+        li {
+            margin-bottom: .8em;
         }
     </style>
 </head>
@@ -288,6 +292,38 @@ export class Hello extends React.Component<Props, void>{
     }
 }
 ```
+---
+class: center, middle
+
+#TP-01
+## Hello World !
+---
+#Composant et Cycle de vie
+* seule **render()** est obligatoire
+* **getInitialState()**: invoqué une seule fois à la création du composant
+* **getDefaultProps()**: invoqué une seule fois aussi
+* **propTypes**, **mixins**, **statics**: plus tard... ;)
+* **componentWillMount()**: J'arrive !
+* **componentDidMount()**: Je suis là !
+* **componentWillReceiveProps(**nextProps: Object**)**
+* **shouldComponentUpdate(**nextProps: Object, nextState: Object**)**: Qu'est ce qu'on fait, chef ?
+* **componentWillUpdate(**nextProps: Object, nextState: object**)**: A l'attaque !
+* **componentDidUpdate(**nextProps: Object, nextState: object**)**: job done
+* **componentWillUnmount()**: bye bye !
+
+---
+# State
+
+* getInitialState()
+* setState()
+* getState()
+* class Hello extends React.Component<Props, State> {...}
+
+---
+class: center, middle
+
+#TP-02
+## Liste de courses
 
 
 </textarea>
