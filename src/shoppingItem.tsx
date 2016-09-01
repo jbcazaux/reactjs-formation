@@ -3,12 +3,13 @@ import * as axios from "axios";
 import {Item} from "./Item";
 
 export interface Props {
-    item: Item
+    item: Item;
+    del: () => void
 }
 
-export const ShoppingItem = ({item}: Props) =>
+export const ShoppingItem = ({item, del}: Props) =>
     (
-        <li >
+        <li onClick={del}>
             <span>{item.label}</span>:
             <span>{item.price}€</span>
         </li>

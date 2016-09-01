@@ -263,16 +263,6 @@ render: function() {
 }
 ```
 ---
-#Stateless component
-```typescript
-import * as React from "react";
-
-interface Props { name: string;}
-
-export const Hello = ({name}: Props) => <h1>Hello {name}!</h1>;
-```
-
----
 #Create or extends ?
 ```typescript
 export const Hello = React.createClass<Props, void>({
@@ -292,11 +282,16 @@ export class Hello extends React.Component<Props, void>{
     }
 }
 ```
+
 ---
-class: center, middle
 
 #TP-01
 ## Hello World !
+
+1. Etendre la classe React.Component
+2. Implémenter la méthode render()
+
+
 ---
 #Composant et Cycle de vie
 * seule **render()** est obligatoire
@@ -314,20 +309,104 @@ class: center, middle
 ---
 # State
 
-* getInitialState()
-* setState()
-* getState()
-* class Hello extends React.Component<Props, State> {...}
+* getInitialState() / this.state = {...}
+* this.setState({...})
+* this.state
 
 ---
-class: center, middle
+# Props vs State
+* Props
+    * Les données passées par les parents
+* State
+    * Bien
+        * Les données modifiables par les événements de la UI
+        * Le plus possible de composants sans état
+    * Pas bien
+        * Des données calculées (à faire dans render)
+        * Des données dérivées des *props*
+        * Des composants
 
+---
+#Stateless component
+```typescript
+import * as React from "react";
+
+interface Props { name: string;}
+
+export const Hello = ({name}: Props) => <h1>Hello {name}!</h1>;
+```
+
+---
 #TP-02
 ## Liste de courses
-1. Faire compiler le code (interfaces Props et State)
-2. Mettre un état par défaut
-3. Afficher un message de log pur chaque moment du cycle de vie
-4. Créer une classe distincte pour les éléments (li) de la liste
+1. Chercher et installer typings axios
+2. Faire compiler le code (interfaces Props et State)
+3. Mettre un état par défaut
+4. Afficher un message de log pur chaque moment du cycle de vie
+5. Créer une classe distincte pour les éléments (li) de la liste
+6. Bonus: Utiliser une classe qui encapsule le composant et gère l'état
+---
+#Bonus TP-02
+```typescript
+export class ShoppingList extends React.Component<Props, State> {
+    // constructor...
+    // componentDidMount() {...}
+    render() {
+        return (
+            <ShoppingListInternal
+                    title={this.props.title}
+                    items={this.state.items}/>
+        )
+    }
+}
+
+type PropsInt = Props & State;
+const ShoppingListInternal = ({title, items}: PropsInt) => (
+    <div>
+        <h2>{title}</h2>
+        <ul>
+            {
+                items.map(item => <ShoppingItem key={item.id} item={item}/>)
+            }
+        </ul>
+    </div>
+)
+```
+---
+# Passer des fonctions dans Props
+```typescript
+export class ShoppingList extends React.Component<Props, State> {
+    // constructor...
+    // componentDidMount() {...}
+    deleteItem() {
+        let newItems = this.state.items.slice(1);
+        this.setState({items: newItems});
+    }
+    render() {
+        return (<ShoppingListInternal
+                    title={this.props.title}
+                    items={this.state.items}
+                    del={this.deleteItem.bind(this)}/>
+        )
+    }
+}
+
+interface PropsInt {title: string;items: Item[];del: () => void}
+const ShoppingListInternal = ({title, items, del}: PropsInt) => (
+    <div>
+        <h2>{title}</h2>
+        <ul>
+            {items.map(item => {
+                return (<li onClick={del}>
+                        <span>{item.label}</span>:<span>{item.price}€</span>
+                        </li>
+                )})}
+        </ul>
+    </div>
+);
+
+```
+
 
 </textarea>
 <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
