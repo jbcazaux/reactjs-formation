@@ -3,7 +3,6 @@ import * as axios from "axios";
 import {Item} from "./Item";
 
 export class ShoppingList extends React.Component<Props, State> {
-
     componentDidMount() {
         axios.get('src/items.json')
             .then(resp => resp.data)

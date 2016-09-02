@@ -120,8 +120,14 @@ class: center, middle, inverse
 # EcmaScript 6
 
 ---
+template: default
+layout: true
 
-# EcmaScript 6 - nouveautés
+### EcmaScript 6
+
+---
+
+# Nouveautés
 
 * Pas totalement supporté par les navigateurs : [Tableau de compatibilité](http://www.webbrowsercompatibility.com/es6/desktop/)
     * Transpiler
@@ -140,7 +146,7 @@ class: center, middle, inverse
 ```
 ---
 
-# EcmaScript 6 - nouveautés
+# Nouveautés
 
 * Spread operator
 ```typescript
@@ -154,7 +160,7 @@ class: center, middle, inverse
 
 ---
 
-# EcmaScript 6 - rappels
+# Rappels
 
 * currying
 ```typescript
@@ -170,8 +176,13 @@ class: center, middle, inverse
     }
 ```
 ---
+template: default
+layout: true
 
-# TypeScript
+### TypeScript
+
+---
+
 
 * Types de base: [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * Interface
@@ -190,7 +201,6 @@ class: center, middle, inverse
 ```
 ---
 
-# TypeScript
 * Type
 ```typescript
     interface Props extends DispatchProps, StateProps {}
@@ -206,7 +216,6 @@ class: center, middle, inverse
 ```
 ---
 
-# TypeScript
 * Typings
 ```
 $> typings search react
@@ -218,10 +227,16 @@ $> typings install --save --global dt~react
 
 
 ---
-
+layout: false
 class: center, middle, inverse
 
 # React
+---
+
+template: default
+layout: true
+
+### Intro
 ---
 
 #Hello world
@@ -248,6 +263,7 @@ export class Hello extends React.Component<Props, void> {
 }
 ```
 ---
+
 #JSX
 ```typescript
 render: function() {
@@ -269,6 +285,7 @@ render: function() {
 }
 ```
 ---
+
 #Create or extends ?
 ```typescript
 export const Hello = React.createClass<Props, void>({
@@ -290,6 +307,7 @@ export class Hello extends React.Component<Props, void>{
 ```
 
 ---
+layout: false
 
 #TP-01
 ## Hello World !
@@ -297,8 +315,15 @@ export class Hello extends React.Component<Props, void>{
 1. Etendre la classe React.Component
 2. Implémenter la méthode render()
 
+---
+
+template: default
+layout: true
+
+### React.Component
 
 ---
+
 #Composant et Cycle de vie
 * seule **render()** est obligatoire
 * **getInitialState()**: invoqué une seule fois à la création du composant
@@ -343,6 +368,8 @@ export const Hello = ({name}: Props) => <h1>Hello {name}!</h1>;
 ```
 
 ---
+layout: false
+
 #TP-02
 ## Liste de courses
 1. Chercher et installer typings axios
@@ -379,6 +406,13 @@ const ShoppingListInternal = ({title, items}: PropsInt) => (
 )
 ```
 ---
+
+template: default
+layout: true
+
+### Callbacks
+
+---
 # Passer des fonctions dans Props
 ```typescript
 export class ShoppingList extends React.Component<Props, State> {
@@ -392,8 +426,7 @@ export class ShoppingList extends React.Component<Props, State> {
         return (<ShoppingListInternal
                     title={this.props.title}
                     items={this.state.items}
-                    del={this.deleteItem.bind(this)}/>
-        )
+                    del={this.deleteItem.bind(this)}/>)
     }
 }
 
@@ -411,6 +444,12 @@ const ShoppingListInternal = ({title, items, del}: PropsInt) => (
     </div>
 );
 ```
+---
+
+template: default
+layout: true
+
+### Avec du style
 
 ---
 #inline style vs css
@@ -438,8 +477,32 @@ Adaptation des composants bootstrap à React
 <Button bsStyle="primary" onClick={this.handleClick.bind(this)}>Go!</Button>
 ```
 
+La documentation
+* [https://react-bootstrap.github.io/components.html](https://react-bootstrap.github.io/components.html)
+* [http://getbootstrap.com/components/](http://getbootstrap.com/components/)
 
+---
 
+template: default
+layout: true
+
+### Tips
+
+---
+
+# JSX if (else)
+if
+```typescript
+{this.state.user && <div>{this.state.user.login}</div>}
+```
+not
+```typescript
+{this.state.user || <div>No User</div>}}
+```
+if-else
+```typescript
+{this.state.user ? <div>{this.state.user.login}</div : <div>No User</div>}
+```
 
 </textarea>
 <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
