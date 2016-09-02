@@ -31,6 +31,9 @@
             font-size: 1.6em;
         }
 
+        p {
+            margin: .5em 0;
+        }
         .inverse {
             background: #272822;
             color: #777872;
@@ -44,11 +47,14 @@
 
         pre {
             border-left: 0.4em solid #d7d7d7;
-            padding: .5em !important;
+            padding-left: 0.5em !important;
+            margin-top: .5em;
+            margin-bottom: 0;
         }
 
         code {
             background: transparent !important;
+            padding-left: 0.2em !important;
         }
 
         a {
@@ -404,8 +410,35 @@ const ShoppingListInternal = ({title, items, del}: PropsInt) => (
         </ul>
     </div>
 );
-
 ```
+
+---
+#inline style vs css
+
+Pourquoi pas du inline ?
+
+```typescript
+render() {
+	const mystyle = {
+		'backgroundColor': '#F0ABCD'
+	}
+	return <div style={mystyle}>
+}
+```
+Sinon une CSS globale, ou une CSS par composant (Webpack powered)
+
+```typescript
+let css = require('./mycomponent.css');
+```
+---
+
+#React-bootstrap
+Adaptation des composants bootstrap à React
+```typescript
+<Button bsStyle="primary" onClick={this.handleClick.bind(this)}>Go!</Button>
+```
+
+
 
 
 </textarea>
