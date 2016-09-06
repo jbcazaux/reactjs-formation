@@ -12,6 +12,10 @@
             font-family: 'Droid Serif';
         }
 
+        img {
+            max-width: 100%;
+        }
+
         h1, h2, h3 {
             font-family: 'Yanone Kaffeesatz';
             font-weight: 400;
@@ -503,7 +507,80 @@ if-else
 ```typescript
 {this.state.user ? <div>{this.state.user.login}</div : <div>No User</div>}
 ```
+---
 
+# Children
+
+```typescript
+interface Props {
+    title: string;
+}
+
+export class ButtonApp extends React.Component<Props, void> {
+    render() {
+        return <Button {...this.props}>hello world</Button>
+    }
+}
+```
+```typescript
+interface ButtonProps {
+    title: string;
+    children?: any;
+}
+
+export const Button = ({title, children}: ButtonProps) => (
+    <button title={title}>
+        {children}
+    </button>
+);
+```
+---
+layout: false
+
+#TP-03
+---
+
+# Rappels
+* Un composant a des propriétés et des états
+* Un composant stateless est plus maintenable et testable
+* On ne peut passer des propriétés qu'aux enfants (ce n est pas de l'héritage;) )
+
+---
+layout: false
+class: center, middle, inverse
+
+# Flux & Redux
+---
+
+template: default
+layout: true
+
+### Flux & Redux
+
+---
+
+# Flux
+
+* Store: Stocker la donnée + Logique
+* Action: Modifier le modèle
+* Dispatcher: Répartir les actions dans les stores
+* View: Les composants UI
+
+![flux acton diagram](images/flux.png)
+
+**Le flux ne va que dans un seul sens !** (~~2-way binding~~)
+
+---
+
+# Redux
+
+* Un store unique
+* L'état du store est read-only
+* On émet des *actions* pour modifier l'état
+* Les actions sont interprétées par des *reducers*
+    * les *reducers* sont des fonctions *pures*
+    * les *reducers* prennent en entrée l'état précédent et une action
+    * ils retournent le nouvel état dans un objet immutable
 </textarea>
 <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
 </script>

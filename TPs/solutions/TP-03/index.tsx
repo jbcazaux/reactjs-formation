@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {ButtonApp} from "./student-app";
+import {StudentsApp} from "./student-app";
 
 
 ReactDOM.render(
-    <ButtonApp title="titi"/>,
+    <StudentsApp/>,
     document.getElementById("app")
 );
