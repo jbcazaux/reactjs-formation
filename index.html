@@ -562,7 +562,7 @@ layout: false
 1. Installer react-bootstrap
 2. Afficher un champ texte qui permet de filtrer les éléments d'un tableau
 3. Afficher le nom de l'étudiant sur lequel on a cliqué, ou un message si aucun n'est sélectionné
-4. Bonus: Calculer de façon élégante la moyenne des notes d'un élève (ES6)
+4. Bonus ES6: Calculer de façon élégante la moyenne des notes d'un élève
 ---
 
 # Rappels
@@ -609,7 +609,7 @@ layout: true
 
 # Redux
 
-* Un store unique
+* Un store unique (pratique pour l'isomorphisme)
 * L'état du store est read-only
 * On émet des *actions* pour modifier l'état
 * Les actions sont interprétées par des *reducers*
@@ -623,20 +623,66 @@ layout: true
 
 # Actions
 
-* ...
+### Action
+```typescript
+export interface FilterAction {type: string; display: boolean;
+}
+```
+### Action Creator
+```typescript
+export const filterWarnings = (display: boolean): FilterAction => {
+    return {type: 'FILTER_WARNINGS', display};
+};
+```
 
+![redux](images/redux.png)
 ---
 
-# Dispatcher
+# Reducer
+```typescript
+export const display =
+(state: DisplayFilter = new DisplayFilter(), action: FilterAction) => {
+    switch (action.type) {
+        case 'FILTER_WARNINGS':
+           return new DisplayFilter(action.display, state.date, state.user);
+        case 'FILTER_DATE':
+           return new DisplayFilter(state.warnings, state.date, action.display);
+        case 'FILTER_USER':
+           return new DisplayFilter(state.warnings, action.display, state.user);
+        default:
+           return state;
+    }
+};
+```
 
-* ...
-
+Le *state* est en read-only !
+```typescript
+interface State = {
+    warning: boolean;
+    user: boolean;
+    date: boolean;
+};
+Object.assign({}, state, {warning: action.display});
+```
+![redux](images/redux.png)
 ---
 
 # Store
 
-* ...
+```typescript
+interface Store<S> {
+    dispatch: Dispatch<S>;
+    getState(): S;
+    subscribe(listener: () => void): Unsubscribe;
+    replaceReducer(nextReducer: Reducer<S>): void;
+}
+```
+* Le *store* garde l'état de l'application. On y accède via *getState()*.
+* ~~setState()~~ !! On modifie l'état en 'dispatchant' une action: *dispatch(filterWarnings(true))*
+* On peut être prévenu des changements du store via *subscribe(listener)*
+* On se désenregistre avec la méthode retournée par *subscribe*
 
+![redux](images/redux.png)
 </textarea>
 <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
 </script>
