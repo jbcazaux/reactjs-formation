@@ -18,17 +18,21 @@ module.exports = {
     devtool: "source-map",
 
     resolve: {
-        root: [path.resolve(__dirname, 'src')],
-        extensions: ["", ".webpack.js", ".ts", ".tsx", ".js"]
+        modules: ['node_modules', './src'],
+        extensions: [".webpack.js", ".ts", ".tsx", ".js"]
     },
 
     module: {
-        loaders: [
-            { test: /\.tsx?$/, loader: "ts-loader" }
-        ],
-
-        preLoaders: [
-            { test: /\.js$/, loader: "source-map-loader" }
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loader: "ts-loader"
+            },
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }
         ]
     },
 
@@ -37,10 +41,5 @@ module.exports = {
             template: './src/index.html',
             inject: 'body'
         })
-    ],
-
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    }
+    ]
 };

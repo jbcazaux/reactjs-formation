@@ -1,6 +1,7 @@
 import * as React from "react";
 
-export interface Props { name: string;
+export interface Props {
+    name: string;
 }
 
 export class Hello extends React.Component<Props, void> {

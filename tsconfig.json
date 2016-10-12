@@ -3,11 +3,24 @@
     "outDir": "tmp",
     "sourceMap": true,
     "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
     "target": "es5",
-    "jsx": "react"
+    "jsx": "react",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "types": [
+    ]
   },
+  "include": [
+    "src",
+    "./node_modules/@types/**/index.d.ts"
+  ],
   "exclude": [
-    "node_modules",
-    "TPs"
+    "./TPs"
   ]
 }
