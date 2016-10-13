@@ -7,9 +7,8 @@ export interface Props {
     title: string
 }
 export interface State {
-    items: Item[];
+    items: ReadonlyArray<Item>;
 }
-
 
 export class ShoppingList extends React.Component<Props, State> {
 
@@ -40,9 +39,9 @@ export class ShoppingList extends React.Component<Props, State> {
 
     componentDidMount() {
         console.log('component did mount');
-        axios.get('src/items.json')
+        axios.get<Item[]>('src/items.json')
             .then(resp => resp.data)
-            .then((items: Item[]) => {
+            .then(items => {
                 this.setState({items: items});
             })
     }

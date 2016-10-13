@@ -4,7 +4,6 @@ import {Item} from './Item';
 export interface Props {
     item: Item
 }
-
 export const ShoppingItem = ({item}: Props) =>
     (
         <li>

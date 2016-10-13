@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "tmp",
+    "outDir": "./tmp/",
     "sourceMap": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -10,17 +10,18 @@
     "skipLibCheck": true,
     "target": "es5",
     "jsx": "react",
-    "typeRoots": [
-      "./node_modules/@types"
-    ],
+    "baseUrl": "./node_modules",
     "types": [
     ]
   },
   "include": [
-    "src",
-    "./node_modules/@types/**/index.d.ts"
+    "node_modules/@types/**/index.d.ts",
+    "src/**/*",
+    "test/**/*"
   ],
   "exclude": [
-    "./TPs"
+    "dist",
+    "TPs",
+    "node_modules/axios/axios"
   ]
 }
