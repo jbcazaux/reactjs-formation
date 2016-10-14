@@ -273,9 +273,39 @@ layout: true
     toArray(5, 6);
     toArray(5, 'hello'); // Bim !
 ```
+
 ---
 
-* Typings
+* Readonly
+```typescript
+    interface Props {
+        readonly user: User
+    }
+```
+```typescript
+    class User {
+        readonly id: string;
+        readonly login: string;
+        constructor(id: string, login: string) {
+            this.id = id;
+            this.login = login;
+        }
+    }
+```
+```typescript
+    let apps: ReadonlyArray<string> = ['app1', 'app2'];
+```
+
+---
+
+* @types -  Descriptions des librairies non TypeScript
+```
+$> npm install --save-dev @types/react
+```
+
+---
+
+* Typings - Avant TypeScript 2
 ```
 $> typings search react
     NAME                              SOURCE HOMEPAGE                                                      DESCRIPTION VERSIONS UPDATED
@@ -638,7 +668,7 @@ layout: true
 ![best practices](images/flux-bestpractice.png)
 
 * On ne met pas à jour directement les autres composants
-* On passe par le store (redux), les stores (flux), les observables (angular2), ...
+* On passe par le store (redux), les stores (flux), les observables (RxJs), ...
 
 ---
 
@@ -905,7 +935,7 @@ layout: false
 
 #TP-04
 ## Liste de courses - bis
-1. Installer les packages redux et react-redux, ainsi que leurs typings
+1. Installer les packages redux et react-redux, ainsi que leurs '@types'
 2. Reprendre le TP-02 mais en utilisant un store plutot que le state du composant.
 
 ---
