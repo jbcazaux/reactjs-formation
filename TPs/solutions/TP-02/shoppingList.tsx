@@ -26,12 +26,12 @@ export class ShoppingList extends React.Component<Props, State> {
         console.log('componentWillReceiveProps', nextProps);
     }
 
-    componentWillUpdate(nextProps: Object, nextState: Object) {
-        console.log('component will update');
+    componentWillUpdate(nextProps: Props, nextState: State, nextContext: any): void {
+        console.log('component will update', nextProps, nextState, nextContext);
     }
 
-    componentDidUpdate(nextProps: Object, nextState: Object) {
-        console.log('component did update');
+    componentDidUpdate(prevProps: Props, prevState: State, prevContext: any): void {
+        console.log('component did update', prevProps, prevState, prevContext);
     }
 
     componentWillUnmount() {

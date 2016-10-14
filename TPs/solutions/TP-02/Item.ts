@@ -1,6 +1,13 @@
 export class Item {
-    constructor(public id: number,
-                public label: string,
-                public price: number) {
+    readonly id: number;
+    readonly label: string;
+    readonly price: number;
+
+    constructor(id: number,
+                label: string,
+                price: number) {
+        this.id = id;
+        this.label = label;
+        this.price = price;
     };
 }

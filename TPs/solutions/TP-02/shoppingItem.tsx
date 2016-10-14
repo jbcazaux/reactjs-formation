@@ -1,6 +1,5 @@
-import * as React from "react";
-import * as axios from "axios";
-import {Item} from "./Item";
+import * as React from 'react';
+import {Item} from './Item';
 
 export interface Props {
     item: Item

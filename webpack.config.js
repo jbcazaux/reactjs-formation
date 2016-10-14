@@ -41,5 +41,10 @@ module.exports = {
             template: './src/index.html',
             inject: 'body'
         })
-    ]
+    ],
+
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
+    }
 };
