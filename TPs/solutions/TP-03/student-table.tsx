@@ -3,11 +3,11 @@ import {Student} from "./student";
 import {Table} from "react-bootstrap";
 
 export interface Props {
-    students: Student[];
-    selectStudent: Function;
+    readonly students: Student[];
+    readonly selectStudent: Function;
 }
 
-export const StudentsTable = ({students, selectStudent}:Props) => {
+export const StudentsTable = ({students, selectStudent}: Props) => {
     const style = {
         margin: 'auto',
         marginTop: '20px',
@@ -36,5 +36,3 @@ export const StudentsTable = ({students, selectStudent}:Props) => {
         </Table>
     )
 };
-
-

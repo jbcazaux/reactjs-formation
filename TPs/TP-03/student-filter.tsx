@@ -6,12 +6,11 @@ export interface Props {
 
 export class Filter extends React.Component<Props, void> {
 
-    handleFilterChange() {
+    onFilterChange(event: any) {
 
     }
 
     render() {
-
     }
 }
 

@@ -13,9 +13,11 @@
   "author": "jbcazaux",
   "devDependencies": {
     "@types/axios": "0.9.32",
+    "@types/es6-shim": "0.31.32",
     "@types/react": "0.14.41",
     "@types/react-bootstrap": "0.0.33",
     "@types/react-dom": "0.14.17",
+    "es6-shim": "0.35.1",
     "html-webpack-plugin": "2.22.0",
     "source-map-loader": "0.1.5",
     "ts-loader": "0.9.1",

@@ -184,7 +184,8 @@ layout: true
 ```
 * Destructuring
 ```typescript
-    //TODO
+    const foo = {a: 1, b: 2, c: 'bar'};
+    let {a} = foo;
 ```
 * Shorthand Notation
 ```typescript
@@ -197,6 +198,16 @@ layout: true
         bar
     }
 ```
+
+---
+
+# Nouveautés
+
+* Object.assign
+```typescript
+    Object.assign({}, {a: 1, c: 3}, {a: 10, b: 2}) // = ?
+```
+
 ---
 
 # Rappels
@@ -222,16 +233,15 @@ layout: true
 
 class: center, middle, inverse
 layout: false
-# TypeScript
+# TypeScript 2
 
 ---
 template: default
 layout: true
 
-### TypeScript
+### TypeScript 2
 
 ---
-
 
 * Types de base: [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * Interface
@@ -411,7 +421,7 @@ layout: true
 ```typescript
 import * as React from "react";
 
-interface Props { name: string;}
+interface Props { readonly name: string;}
 
 export const Hello = ({name}: Props) => <h1>Hello {name}!</h1>;
 ```
@@ -478,8 +488,8 @@ export class ShoppingList extends React.Component<Props, State> {
                     del={this.deleteItem.bind(this)}/>)
     }
 }
-
-interface PropsInt {title: string;items: Item[];del: () => void}
+interface PropsInt {readonly title: string;
+    readonly items: ReadonlyArray<Item>;readonly del: () => void}
 const ShoppingListInternal = ({title, items, del}: PropsInt) => (
     <div>
         <h2>{title}</h2>
@@ -546,7 +556,7 @@ if
 ```
 not
 ```typescript
-{this.state.user || <div>No User</div>}}
+{this.state.user || <div>No User</div>}
 ```
 if-else
 ```typescript
@@ -558,7 +568,7 @@ if-else
 
 ```typescript
 interface Props {
-    title: string;
+    readonly title: string;
 }
 
 export class ButtonApp extends React.Component<Props, void> {
@@ -569,8 +579,8 @@ export class ButtonApp extends React.Component<Props, void> {
 ```
 ```typescript
 interface ButtonProps {
-    title: string;
-    children?: any;
+    readonly title: string;
+    readonly children?: any;
 }
 
 export const Button = ({title, children}: ButtonProps) => (
@@ -683,9 +693,9 @@ export const display =
 Le *state* est en read-only !
 ```typescript
 interface State = {
-    warning: boolean;
-    user: boolean;
-    date: boolean;
+    readonly warning: boolean;
+    readonly user: boolean;
+    readonly date: boolean;
 };
 Object.assign({}, state, {warning: action.display});
 ```
@@ -724,7 +734,7 @@ layout: true
 
 # Composition de reducers - Approche naïve
 ```typescript
-interface State = {user: string; counter: number;};
+interface State = {readonly user: string; readonly counter: number;};
 const initialState = {user: '', counter: 0};
 export const myreducer =
 (state = initialState, action: any) => {
@@ -771,7 +781,7 @@ export const counter =
 
 # Composition de reducers - Effet Waouh
 ```typescript
-interface State = {user: string; counter: number;};
+interface State = {readonly user: string; readonly counter: number;};
 const initialState = {};
 export const myreducer =
 (state = initialState, action: any) => {
@@ -840,8 +850,8 @@ export const SelectCodePostal_ = ({cps, currentCp, onSelectCp}: Props) => (
 ## Conteneur
 ```typescript
 interface StateProps {
-    cps: number[];
-    currentCp: number;
+    readonly cps: ReadonlyArray<number>;
+    readonly currentCp: number;
 }
 interface DispatchProps {
     onSelectCp: (e: Event) => void;

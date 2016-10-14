@@ -1,28 +1,26 @@
-import * as React from "react";
+import * as React from 'react';
 
 export interface Props {
-    onChange: Function;
+    readonly onChange: Function;
 }
 
 export class Filter extends React.Component<Props, void> {
 
-    private inputText: HTMLInputElement;
-
-
-    handleFilterChange() {
-        this.props.onChange(this.inputText.value)
+    onFilterChange(e: any) {
+        this.props.onChange(e.target.value);
     }
 
     render() {
-        const inputText = {
-            marginLeft: '5px',
-        };
-
         return (
             <form className="form-inline">
                 <label htmlFor="filterVoie" className="control-label">Filtrer:</label>
-                <input id="filterVoie" type="text" placeholder="Tapez un nom..." ref={(c) => this.inputText = c}
-                       onChange={this.handleFilterChange.bind(this)} className="form-control" style={inputText}/>
+                <input id="filterVoie"
+                       type="text"
+                       placeholder="Tapez un nom..."
+                       onChange={this.onFilterChange.bind(this)}
+                       className="form-control"
+                       style={{marginLeft: '5px'}}
+                />
             </form>
         )
     }
