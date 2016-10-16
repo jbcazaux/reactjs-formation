@@ -429,19 +429,31 @@ layout: true
 ---
 # State
 
-* getInitialState() / this.state = {...}
-* this.setState({...})
-* this.state
+* Définir l'état par défaut
+```typescript
+getInitialState() { return {...} }
+```
+```typescript
+this.state = {...}
+```
+* Définir un nouvel état
+```typescript
+this.setState({...})
+```
+* Récupérer l'état courant
+```typescript
+this.state
+```
 
 ---
 # Props vs State
 * Props
     * Les données passées par les parents
 * State
-    * Bien
+    * A faire
         * Les données modifiables par les événements de la UI
         * Le plus possible de composants sans état
-    * Pas bien
+    * A ne pas faire
         * Des données calculées (à faire dans render)
         * Des données dérivées des *props*
         * Des composants
@@ -453,20 +465,42 @@ import * as React from "react";
 
 interface Props { readonly name: string;}
 
-export const Hello = ({name}: Props) => <h1>Hello {name}!</h1>;
+export const Hello = (props: Props) => <h1>Hello {props.name}!</h1>;
 ```
 
+---
+
+template: default
+layout: true
+
+### Tips
+
+---
+
+# Itérer sur un tableau
+```typescript
+render() {
+    return (
+        ...
+        {
+            items.map(item => <div key={item.id}>{item.label}</div>)
+        }
+        ...
+    )
+}
+```
 ---
 layout: false
 
 #TP-02
 ## Liste de courses
-1. Chercher et installer typings axios
+1. Installer les définitions de type d'axios
 2. Faire compiler le code (interfaces Props et State)
 3. Mettre un état par défaut
 4. Afficher un message de log pour chaque moment du cycle de vie
 5. Créer un composant distinct pour les éléments (li) de la liste
-6. Bonus: Utiliser une classe qui encapsule le composant et gère l'état
+6. Bonus: Utiliser une classe qui encapsule le composant "liste" pour gérer l'appel au serveur, et transmettre les data
+en tant que *props*
 ---
 #Bonus TP-02
 ```typescript
@@ -627,7 +661,7 @@ layout: false
 1. Installer react-bootstrap
 2. Afficher un champ texte qui permet de filtrer les éléments d'un tableau
 3. Afficher le nom de l'étudiant sur lequel on a cliqué, ou un message si aucun n'est sélectionné
-4. Bonus ES6: Calculer de façon élégante la moyenne des notes d'un élève
+4. Bonus ES6: Calculer de façon élégante la moyenne des notes d'un élève (reduce)
 ---
 
 # Rappels

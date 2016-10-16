@@ -4,10 +4,10 @@ import {Item} from "./Item";
 import {ShoppingItem} from "./shoppingItem";
 
 export interface Props {
-    title: string
+    readonly title: string
 }
 export interface State {
-    items: Item[];
+    readonly items: ReadonlyArray<Item>
 }
 
 
