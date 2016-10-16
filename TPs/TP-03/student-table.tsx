@@ -3,8 +3,8 @@ import {Student} from "./student";
 import {Table} from "react-bootstrap";
 
 export interface Props {
-    students: Student[];
-    selectStudent: Function;
+    readonly students: ReadonlyArray<Student>;
+    readonly selectStudent: Function;
 }
 
 export const StudentsTable = ({students, selectStudent}:Props) => {

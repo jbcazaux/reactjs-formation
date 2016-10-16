@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface Props {
-    readonly onChange: Function;
+    readonly onChange: (event: any) => void;
 }
 
 export class Filter extends React.Component<Props, void> {
