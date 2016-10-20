@@ -132,7 +132,7 @@ class: center, middle, inverse
 # Contenu
 
 * ES6
-    * Nouveautés
+    * Quelques nouveautés
     * Rappels sur la programmation fonctionnelle
 * TypeScript 2
     * Langage et mots-clés
@@ -156,7 +156,7 @@ layout: true
 
 ---
 
-# Nouveautés
+# Quelques nouveautés
 * TODO: es6, es2015,...
 * Pas totalement supporté par les navigateurs : [Tableau de compatibilité](http://www.webbrowsercompatibility.com/es6/desktop/)
     * Transpiler
@@ -175,7 +175,7 @@ layout: true
 ```
 ---
 
-# Nouveautés
+# Quelques nouveautés
 
 * Spread operator
 ```typescript
@@ -201,13 +201,25 @@ layout: true
 
 ---
 
-# Nouveautés
+# Quelques nouveautés
 
 * Object.assign
 ```typescript
     Object.assign({}, {a: 1, c: 3}, {a: 10, b: 2}) // = ?
 ```
 
+* Map
+```typescript
+    let m = new Map();
+    m.set('foo', 2);
+    const bar = m.has('foo') ? m.get('foo') : 0;
+```
+
+* Set
+```typescript
+    let uniq = new Set(1, 2, 3, 1, 2, 3);
+    uniq.length // ?
+```
 ---
 
 # Rappels
@@ -363,6 +375,7 @@ render: function() {
     )
 }
 ```
+ou pas:
 ```typescript
 render: function() {
     return (
@@ -658,7 +671,7 @@ layout: false
 
 #TP-03
 ## Liste des étudiants
-1. Installer react-bootstrap
+1. Installer react-bootstrap et ses définitions de type
 2. Afficher un champ texte qui permet de filtrer les éléments d'un tableau
 3. Afficher le nom de l'étudiant sur lequel on a cliqué, ou un message si aucun n'est sélectionné
 4. Bonus ES6: Calculer de façon élégante la moyenne des notes d'un élève (reduce)
@@ -693,7 +706,6 @@ layout: true
 ![flux acton diagram](images/flux.png)
 
 **Le flux ne va que dans un seul sens !** (~~2-way binding~~)
-
 
 ---
 
