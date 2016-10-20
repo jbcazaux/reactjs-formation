@@ -858,7 +858,7 @@ export const counter =
 # Composition de reducers - Effet Waouh
 ```typescript
 interface State = {readonly user: string; readonly counter: number;};
-const initialState = {};
+const initialState = {user: 'nobody', counter: 0};
 export const myreducer =
 (state = initialState, action: any) => {
     return {
@@ -882,7 +882,7 @@ export const myreducer = combineReducers({
 * Les composants stateless sont simples à maintenir
 * Séparation des responsabilités
 
-** On découpe nos composants en 2, *présentation* & *conteneur* **
+** On découpe nos composants (connectés au *store*) en 2, *présentation* & *conteneur* **
 
 |               | Presentational Components         | Container Components                          |
 | ------------- |-----------------------------------| ----------------------------------------------|
@@ -898,7 +898,7 @@ export const myreducer = combineReducers({
 
 * Le composant de présentation est comme les composants simples rencontrés jusque la (sans appels ajax)
 * Le composant conteneur va être généré automatiquement, ** mais **
-    * il faut décrire comment crééer les *props* à partir des données du *store*: **mapStateToProps(state: State): StateProps {...}**
+    * il faut décrire comment créer les *props* à partir des données du *store*: **mapStateToProps(state: State): StateProps {...}**
     * il faut implémenter les callbacks qui seront injectés dans les *props*: **mapDispatchToProps(dispatch: Function): DispatchProps {...}**
 
 ```typescript
@@ -938,8 +938,7 @@ const mapStateToProps = (state: State): StateProps => {
     const cpsOfAgence = state.codesPostaux
         .map((cp: CodePostal) => cp.id)
         .sort((a: number, b: number) => a - b);
-    const currentCp = state.codePostal ? state.codePostal.id : null;
-    return {cps: cpsOfAgence, currentCp: currentCp};
+    return {cps: cpsOfAgence, currentCp: state.codePostal.id};
 };
 
 const mapDispatchToProps = (dispatch: Function): DispatchProps => {
@@ -984,6 +983,13 @@ layout: false
 1. Installer les packages redux et react-redux, ainsi que leurs '@types'
 2. Reprendre le TP-02 mais en utilisant un store plutot que le state du composant, et en initialisant la liste sans
 chargement asynchrone (liste en dur).
+ * Créer l'interface 'State du *state* du *store* (la liste d'items)
+ * Creer une interface *ItemsAction*
+ * Créer un *action creator* 'setItems' qui renvoie une *ItemAction*
+ * Créer un reducer 'items' qui prend une *ItemAction* en entrée
+ * Créer un reducer global à l'aide de *combineReducer*
+ * Passer un titre dans les ownProps (et donc créer l'interface OwnProps)
+
 
 ---
 
