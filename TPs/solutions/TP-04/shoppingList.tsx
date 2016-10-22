@@ -5,8 +5,13 @@ import {setItems, addItems} from './actions/items';
 import {State} from './reducers/state';
 import {connect} from 'react-redux';
 
-export interface OwnProps {
+interface OwnProps {
     readonly title: string
+}
+
+interface LocalState {
+    readonly newItem: string;
+    readonly newPrice: number;
 }
 
 interface StateProps {
@@ -36,7 +41,12 @@ const mapDispatchToProps = (dispatch: Function): DispatchProps => {
     };
 };
 
-class ShoppingList_ extends React.Component<Props, void> {
+class ShoppingList_ extends React.Component<Props, LocalState> {
+
+    constructor() {
+        super();
+        this.state = {newItem: '', newPrice: 0};
+    }
 
     componentDidMount() {
         this.props.setItems([
@@ -55,8 +65,28 @@ class ShoppingList_ extends React.Component<Props, void> {
                         this.props.items.map(item => <ShoppingItem key={item.id} item={item}/>)
                     }
                 </ul>
+                <form onSubmit={this.addItem.bind(this)}>
+                    <input type="text"
+                           placeholder="item"
+                           onChange={(e: any) =>
+                            this.setState(Object.assign({}, this.state, {newItem: e.target.value}))}
+                           value={this.state.newItem}
+                    />
+                    <input type="number"
+                           onChange={(e: any) =>
+                            this.setState(Object.assign({}, this.state, {newPrice: parseFloat(e.target.value)}))}
+                           value={this.state.newPrice}
+                    />
+                    <button type="submit">add</button>
+                </form>
             </div>
-        )
+        );
+    }
+
+    private addItem(e: Event) {
+        e.preventDefault();
+        this.props.onAddItems([new Item((new Date()).getTime(), this.state.newItem, this.state.newPrice)]);
+        this.setState({newItem: '', newPrice: 0});
     }
 }
 
