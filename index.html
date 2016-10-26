@@ -997,15 +997,57 @@ et en initialisant la liste sans chargement asynchrone (liste en dur).
 template: default
 layout: true
 
-### React & Redux
+### Actions asynchrones
 ---
 
-# Actions asynchrones
+## Généralités
 
-* Redux ne permet de passer que dipatcher des objets
+* Redux ne permet de passer que dispatcher des objets
 * **redux-thunk** permet de passer une fonction, et donc des actions asynchrones ou des actions avec conditions
 * Avec **TypeScript** on se fait quelques noeuds au cerveau ;)
+* C'est plus élégant que les actions retournent des *promesses*
 
+---
+
+## Sans TypeScript
+```javascript
+const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
+
+function incrementCreator(inc) {
+  return {
+    type: INCREMENT_COUNTER,
+    inc: inc
+  };
+}
+
+function incrementAsyncCreator(inc) {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(increment(inc));
+    }, 1000);
+  };
+}
+
+
+```
+
+---
+
+## Avec TypeScript
+```typescript
+
+```
+
+---
+layout: false
+
+#TP-05
+## Liste de courses - ter
+1. Installer redux-thunk et le '@types'
+2. Reprendre le TP-04 mais faisant un appel asynchrone (http) pour charger la liste d'items
+3. Bonus: Créer un bouton qui permet d'ajouter des items au store.
+
+---
 
 </textarea>
 <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
