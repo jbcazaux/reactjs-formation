@@ -32,12 +32,8 @@ const mapStateToProps = (state: State, ownProps: OwnProps): StateProps & OwnProp
 };
 const mapDispatchToProps = (dispatch: Function): DispatchProps => {
     return {
-        setItems: (items: ReadonlyArray<Item>) => {
-            dispatch(setItems(items));
-        },
-        onAddItems: (items: ReadonlyArray<Item>) => {
-            dispatch(addItems(items));
-        }
+        setItems: (items: ReadonlyArray<Item>) => dispatch(setItems(items)),
+        onAddItems: (items: ReadonlyArray<Item>) => dispatch(addItems(items))
     };
 };
 
