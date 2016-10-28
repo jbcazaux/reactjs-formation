@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as axios from "axios";
 import {Item} from "./Item";
-import {ShoppingItem} from "./shoppingItem";
 
 export interface Props {
 
@@ -22,7 +21,7 @@ export class ShoppingList extends React.Component<Props, State> {
         axios.get<Item[]>('src/items.json')
             .then(resp => resp.data)
             .then(items => {
-                // enregistrer l'etat
+                // setter le nouvel état
             })
     }
 
