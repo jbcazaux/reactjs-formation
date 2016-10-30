@@ -1081,7 +1081,8 @@ Dans le code, on va écrire des **ThunkActionCreator**
 ```typescript
 type ThunkAction2<R> = ThunkAction<R, State, void>;
 export type ThunkActionCreator<R> = (...args: any[]) => ThunkAction2<R>;
-
+// Ou en une ligne
+export type ThunkActionCreator<R> = (...args: any[]) => ThunkAction<R, State, void>;
 ```
 
 ```typescript
