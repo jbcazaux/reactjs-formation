@@ -128,6 +128,15 @@ class: center, middle, inverse
 #### [http://codox.fr/reactjs-formation](http://codox.fr/reactjs-formation)
 
 ---
+## Versions
+
+```json
+...
+"typescript": "2.0.6",
+"react": "15.3.2",
+"webpack": "2.1.0-beta.25",
+...
+---
 
 # Contenu
 
@@ -1105,6 +1114,56 @@ layout: false
 2. Reprendre le TP-04 mais faisant un appel asynchrone (http) pour charger la liste d'items
 
 ---
+
+# Bravo !
+* C'était la partie la plus compliquée
+* On sait créer des compostants et leur passer des propriétés
+ * Depuis leur composant parent
+ * Depuis depuis un l'état 'local' (**LocalState**)
+ * Depuis l'état du **store** (**State**)
+ * Depuis un composant (grand)n-parent par le context... ou pas !
+
+---
+
+
+template: default
+layout: true
+
+### Context
+---
+
+## Mises en garde
+
+* On peut passer des objets à ses composants enfants (n'importe où dans la hiérarchie).
+* Des librairies sont basées la dessus, mais ce n'est pas officiellement supporté (le fonctionnement pourra varier, être supprimé).
+La doc par d'**experimental API** !
+* *react-redux* fonctionne grâce à ca (le store est passé à tous les enfants).
+* ** A n'utiliser qu'en cas d'urgence ;)**
+
+---
+
+## PropTypes
+
+* Nécessaires pour faire fonctionner le *context*
+* Permet de décrire (typer, rendre obligatoire, ...) des propriétés
+* Pas vraiment utile quand on fait du typescript ! (d'ailleurs, ce n'est pas dans les définitions de types).
+
+---
+
+## Utilisation
+Dans un composant, il faut implémenter *getChildContext()*:
+```typescript
+getChildContext() {
+    return {color: 'purple', user: new User(0, 'admin')};
+}
+```
+Puis définir les *childContextTypes*
+```typescript
+MyComponent.childContextTypes = {
+  color: React.PropTypes.string,
+  User: React.PropTypes.User //TODO : Ok avec des objets complexes ?
+};
+```
 
 </textarea>
 <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
