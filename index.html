@@ -693,7 +693,7 @@ layout: false
 # Rappels
 * Un composant a des propriétés et des états
 * Un composant stateless est plus maintenable et testable
-* On ne peut passer des propriétés qu'aux enfants (ce n est pas de l'héritage;) )
+* On ne peut passer des propriétés qu'aux enfants (ce n'est pas de l'héritage;) )
 
 ---
 layout: false
@@ -747,15 +747,24 @@ layout: true
 
 # Actions
 
-### Action
+
+### Actions
 ```typescript
-export interface FilterAction {type: string; display: boolean;
+{type: 'INCREMENT', inc: 3}
+{type: 'ADD_TODO', text: 'Acheter du pain'}
+{type: 'SET_USER', user: new User(1, 'toto')}
+```
+### Interface
+```typescript
+export interface CounterAction {
+    type: string;
+    inc: number;
 }
 ```
 ### Action Creator
 ```typescript
-export const filterWarnings = (display: boolean): FilterAction => {
-    return {type: 'FILTER_WARNINGS', display};
+export const incrementor = (inc: number): CounterAction => {
+    return {type: 'INCREMENT', inc: inc};
 };
 ```
 
@@ -765,29 +774,18 @@ export const filterWarnings = (display: boolean): FilterAction => {
 # Reducer
 ```typescript
 export const display =
-(state: DisplayFilter = new DisplayFilter(), action: FilterAction) => {
+(state: number = 0, action: CounterAction) => {
     switch (action.type) {
-        case 'FILTER_WARNINGS':
-           return new DisplayFilter(action.display, state.date, state.user);
-        case 'FILTER_DATE':
-           return new DisplayFilter(state.warnings, state.date, action.display);
-        case 'FILTER_USER':
-           return new DisplayFilter(state.warnings, action.display, state.user);
+        case 'INCREMENT':
+           return state + action.inc;
+        case 'DECREMENT':
+           return state - action.inc;
         default:
            return state;
     }
 };
 ```
-
 Le *state* est en read-only !
-```typescript
-interface State = {
-    readonly warning: boolean;
-    readonly user: boolean;
-    readonly date: boolean;
-};
-Object.assign({}, state, {warning: action.display});
-```
 ![redux](images/redux.png)
 ---
 
