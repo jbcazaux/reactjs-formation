@@ -23,6 +23,14 @@
             border-collapse: collapse;
         }
 
+        table th:nth-child(2), table tr td:nth-child(2) {
+            background-color: #6fa8dc;
+        }
+
+        table th:nth-child(3), table tr td:nth-child(3) {
+            background-color: #ea9999;
+        }
+
         th, td {
             padding: 5px;
             border: 1px solid black;
@@ -888,10 +896,28 @@ export const myreducer = combineReducers({
 ```
 ---
 
+# Récapitulatif
+
+- Actions
+- Reducers
+- Store
+- Composants React
+- Il reste à lier les composants au store !
+
+![redux](images/redux.png)
+
+---
+
 # Présentation et Conteneur
 
 * Les composants stateless sont simples à maintenir
 * Séparation des responsabilités
+
+![react-redux](images/conteneur-pres.png)
+
+---
+
+# Présentation et Conteneur
 
 ** On découpe nos composants (connectés au *store*) en 2, *présentation* & *conteneur* **
 
@@ -925,7 +951,7 @@ export const MyComponent =
 export const SelectCodePostal_ = ({cps, currentCp, onSelectCp}: Props) => (
     <FormControl componentClass="select"
                  onChange={onSelectCp}
-                 value={currentCp || ''}>
+                 value={currentCp}>
         {
             cps.map((cp: number) => <option key={cp} value={cp}>{cp}</option> )
         }
@@ -947,8 +973,7 @@ type Props = StateProps & DispatchProps;
 
 const mapStateToProps = (state: State): StateProps => {
     const cpsOfAgence = state.codesPostaux
-        .map((cp: CodePostal) => cp.id)
-        .sort((a: number, b: number) => a - b);
+        .map((cp: CodePostal) => cp.id);
     return {cps: cpsOfAgence, currentCp: state.codePostal.id};
 };
 
