@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {Item} from './Item';
 import {ShoppingItem} from './shoppingItem';
-import {setItems, addItems} from './actions/items';
-import {State} from './reducers/state';
 import {connect} from 'react-redux';
 
 interface StateProps {
+    items: any; // TODO
 }
 
 interface DispatchProps {
+    setItems: any; // TODO
 }
 
 type Props = StateProps & DispatchProps;
