@@ -1170,24 +1170,56 @@ La doc par d'**experimental API** !
 
 * Nécessaires pour faire fonctionner le *context*
 * Permet de décrire (typer, rendre obligatoire, ...) des propriétés
-* Pas vraiment utile quand on fait du typescript ! (d'ailleurs, ce n'est pas dans les définitions de types).
+* Pas vraiment utile quand on fait du typescript !
 
 ---
 
 ## Utilisation
-Dans un composant, il faut implémenter *getChildContext()*:
+Dans le composant parent, il faut implémenter *getChildContext()*
 ```typescript
-getChildContext() {
+getChildContext(): MyContext  {
     return {color: 'purple', user: new User(0, 'admin')};
 }
 ```
-Puis définir les *childContextTypes*
+Puis définir les *childContextTypes*, toujours dans le composant parent
 ```typescript
-MyComponent.childContextTypes = {
-  color: React.PropTypes.string,
-  User: React.PropTypes.User //TODO : Ok avec des objets complexes ?
+static childContextTypes = {
+    color: React.PropTypes.string.isRequired,
+    user: React.PropTypes.object.isRequired
 };
 ```
+
+---
+
+## Utilisation
+Dans le composant enfant, on peut typer le *context*, il faut déclarer les *contextTypes*, et là on
+a accès au context dans le composant.
+```typescript
+class Child extends React.Component<void, void> {
+
+    context: MyContext;
+
+    static contextTypes = {
+        color: React.PropTypes.string.isRequired,
+        user: React.PropTypes.object.isRequired
+    };
+
+    render() {
+        return <div>user = {this.context.user.login}</div>;
+    }
+}
+```
+
+---
+layout: false
+
+#TP-06
+## Contexte
+Le but est de passer une couleur et un **User** d'un composant à son composant 'petit-fils'
+1. Déclarer un context dans le composant grand parent (Large), avec une couleur et un User.
+2. Afficher les informations passées dans le *context* dans le composant petit-fils (Small)
+
+---
 
 </textarea>
 <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
