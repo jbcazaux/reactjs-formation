@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Item} from './Item';
 import {ShoppingItem} from './shoppingItem';
-import {setItems, addItems, fetchItems} from './actions/items';
+import {addItems, fetchItems} from './actions/items';
 import {State} from './reducers/state';
 import {connect} from 'react-redux';
 
@@ -19,7 +19,6 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    setItems: (items: ReadonlyArray<Item>) => void;
     onAddItems: (items: ReadonlyArray<Item>) => void;
     fetchItems: () => Promise<Item[]>;
 }
@@ -33,7 +32,6 @@ const mapStateToProps = (state: State, ownProps: OwnProps): StateProps & OwnProp
 };
 const mapDispatchToProps = (dispatch: Function): DispatchProps => {
     return {
-        setItems: (items: ReadonlyArray<Item>) => dispatch(setItems(items)),
         onAddItems: (items: ReadonlyArray<Item>) => dispatch(addItems(items)),
         fetchItems: () => dispatch(fetchItems())
     };
@@ -85,4 +83,3 @@ class ShoppingList_ extends React.Component<Props, LocalState> {
 }
 
 export const ShoppingList = connect(mapStateToProps, mapDispatchToProps)(ShoppingList_);
-

@@ -25,7 +25,7 @@ const getItems: (() => Promise<Item[]>) =
     () => axios.get<Item[]>('src/items.json')
         .then(resp => resp.data);
 
-export const fetchItems: ThunkActionCreator = () =>
+export const fetchItems: ThunkActionCreator<????> = () =>
     (dispatch, getState) => {
         return; //TODO !
     };

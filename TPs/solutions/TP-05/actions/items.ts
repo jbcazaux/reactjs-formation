@@ -33,3 +33,9 @@ export const fetchItems: ThunkActionCreator<void> = () =>
         .catch((error: any) => {
             console.log(error);
         });
+
+export const addItemsWithTVA: ThunkActionCreator<void> = (items: ReadonlyArray<Item>) =>
+    (dispatch) => {
+        const newItems = items.map(item => new Item(item.id, item.label, item.price * 1.206));
+        return dispatch(addItems(newItems));
+    };
