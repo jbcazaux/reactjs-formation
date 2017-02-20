@@ -4,4 +4,4 @@
 /tmp/
 yarn.lock
 *.jsx
-*.js
+TPs/**/*.js
