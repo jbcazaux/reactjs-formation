@@ -1,4 +1,5 @@
-export class Item {
+export default class Item {
+
     readonly id: number;
     readonly label: string;
     readonly price: number;

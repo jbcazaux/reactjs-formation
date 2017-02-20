@@ -2,7 +2,7 @@ import * as React from "react";
 import Student from "./student";
 import {Table} from "react-bootstrap";
 
-export interface Props {
+interface Props {
     readonly students: ReadonlyArray<Student>;
     readonly selectStudent: (student: Student) => void;
 }

@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {reducer} from './reducers/index';
-import {ShoppingList} from './shoppingList';
+import ShoppingList from './shopping-list';
 import {createStore, applyMiddleware, ThunkAction } from 'redux';
 import thunk from 'redux-thunk';
-import {State} from './reducers/state';
+import State from './reducers/state';
 
 const store = null; // TODO !
 

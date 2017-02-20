@@ -1,7 +1,7 @@
-import {Item} from '../Item';
+import Item from '../item';
 import {ItemsAction} from '../actions/items';
 
-export const items = (state: ReadonlyArray<Item> = [], action: ItemsAction) => {
+const items = (state: ReadonlyArray<Item> = [], action: ItemsAction) => {
         switch (action.type) {
             case 'SET_ITEMS':
                 return action.items;
@@ -11,3 +11,5 @@ export const items = (state: ReadonlyArray<Item> = [], action: ItemsAction) => {
                 return state;
         }
     };
+
+export default items;

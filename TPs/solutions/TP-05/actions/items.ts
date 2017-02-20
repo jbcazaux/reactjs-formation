@@ -1,6 +1,6 @@
-import {Item} from '../Item';
+import Item from '../item';
 import {ThunkActionCreator} from '../index';
-import * as axios from 'axios';
+import Axios, {AxiosResponse} from 'axios';
 
 export interface ItemsAction {
     type: string;
@@ -22,8 +22,8 @@ export const addItems = (items: ReadonlyArray<Item>): ItemsAction => {
 };
 
 const getItems: (() => Promise<Item[]>) =
-    () => axios.get<Item[]>('src/items.json')
-        .then(resp => resp.data);
+    () => Axios.get('src/items.json')
+        .then((resp: AxiosResponse) => resp.data);
 
 export const fetchItems: ThunkActionCreator<void> = () =>
     (dispatch) => getItems()

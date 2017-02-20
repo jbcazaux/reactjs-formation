@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Item} from './Item';
-import {ShoppingItem} from './shoppingItem';
+import Item from './item';
+import ShoppingItem from './shopping-item';
 import {fetchItems, addItemsWithTVA} from './actions/items';
-import {State} from './reducers/state';
+import State from './reducers/state';
 import {connect} from 'react-redux';
 
 interface OwnProps {
@@ -82,5 +82,5 @@ class ShoppingList_ extends React.Component<Props, LocalState> {
     }
 }
 
-export const ShoppingList = connect(mapStateToProps, mapDispatchToProps)(ShoppingList_);
-
+const ShoppingList = connect(mapStateToProps, mapDispatchToProps)(ShoppingList_);
+export default ShoppingList;

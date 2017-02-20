@@ -4,7 +4,7 @@ export interface Props {
     readonly onChange: (event: any) => void;
 }
 
-export default class Filter extends React.Component<Props, void> {
+export default class StudentsFilter extends React.Component<Props, void> {
 
     onFilterChange(e: any) {
         this.props.onChange(e.target.value);

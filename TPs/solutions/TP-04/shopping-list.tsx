@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Item} from './Item';
-import {ShoppingItem} from './shoppingItem';
-import {addItems, fetchItems} from './actions/items';
+import Item from './item';
+import ShoppingItem from './shopping-item';
+import {setItems, addItems} from './actions/items';
 import {State} from './reducers/state';
 import {connect} from 'react-redux';
 
@@ -19,8 +19,8 @@ interface StateProps {
 }
 
 interface DispatchProps {
+    setItems: (items: ReadonlyArray<Item>) => void;
     onAddItems: (items: ReadonlyArray<Item>) => void;
-    fetchItems: () => Promise<Item[]>;
 }
 type Props = StateProps & OwnProps & DispatchProps;
 
@@ -32,8 +32,8 @@ const mapStateToProps = (state: State, ownProps: OwnProps): StateProps & OwnProp
 };
 const mapDispatchToProps = (dispatch: Function): DispatchProps => {
     return {
-        onAddItems: (items: ReadonlyArray<Item>) => dispatch(addItems(items)),
-        fetchItems: () => dispatch(fetchItems())
+        setItems: (items: ReadonlyArray<Item>) => dispatch(setItems(items)),
+        onAddItems: (items: ReadonlyArray<Item>) => dispatch(addItems(items))
     };
 };
 
@@ -45,7 +45,11 @@ class ShoppingList_ extends React.Component<Props, LocalState> {
     }
 
     componentDidMount() {
-        this.props.fetchItems();
+        this.props.setItems([
+            new Item(1, 'pain', 0.95),
+            new Item(2, 'gel douche', 2.85),
+            new Item(3, 'cahier à spirales', 1.20)
+        ]);
     }
 
     render() {
@@ -82,4 +86,5 @@ class ShoppingList_ extends React.Component<Props, LocalState> {
     }
 }
 
-export const ShoppingList = connect(mapStateToProps, mapDispatchToProps)(ShoppingList_);
+const ShoppingList = connect(mapStateToProps, mapDispatchToProps)(ShoppingList_);
+export default ShoppingList;

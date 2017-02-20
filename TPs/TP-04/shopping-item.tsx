@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Item} from './Item';
+import Item from './item';
 
 export interface Props {
     item: Item

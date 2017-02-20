@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Item} from './Item';
-import {ShoppingItem} from './shoppingItem';
+import Item from './item';
+import {ShoppingItem} from './shopping-item';
 import {connect} from 'react-redux';
 
 interface StateProps {
@@ -40,5 +40,5 @@ class ShoppingList_ extends React.Component<Props, void> {
     }
 }
 
-export const ShoppingList = connect(mapStateToProps, mapDispatchToProps)(ShoppingList_);
-
+const ShoppingList = connect(mapStateToProps, mapDispatchToProps)(ShoppingList_);
+export default ShoppingList;

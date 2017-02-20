@@ -1,13 +1,13 @@
-import {Item} from '../Item';
+import Item from '../item';
 import {ThunkActionCreator} from '../index';
-import * as axios from 'axios';
+import Axios, {AxiosResponse} from 'axios';
 
 export interface ItemsAction {
     type: string;
     items: ReadonlyArray<Item>
 }
 
-const setItems = (items: ReadonlyArray<Item>): ItemsAction => {
+export const setItems = (items: ReadonlyArray<Item>): ItemsAction => {
     return {
         type: 'SET_ITEMS',
         items
@@ -22,8 +22,8 @@ export const addItems = (items: ReadonlyArray<Item>): ItemsAction => {
 };
 
 const getItems: (() => Promise<Item[]>) =
-    () => axios.get<Item[]>('src/items.json')
-        .then(resp => resp.data);
+    () => Axios.get('src/items.json')
+        .then((resp: AxiosResponse) => resp.data);
 
 export const fetchItems: ThunkActionCreator<????> = () =>
     (dispatch, getState) => {

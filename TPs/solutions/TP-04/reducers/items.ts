@@ -1,4 +1,4 @@
-import {Item} from '../Item';
+import {Item} from '../item';
 import {ItemsAction} from '../actions/items';
 
 export const items = (state: ReadonlyArray<Item> = [], action: ItemsAction) => {

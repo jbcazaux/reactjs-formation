@@ -1,4 +1,4 @@
-export class Student {
+export default class Student {
     readonly id: number;
     readonly lastname: string;
     readonly firstname: string;

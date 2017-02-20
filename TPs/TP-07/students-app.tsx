@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as axios from 'axios';
 import Student from './student';
-import Filter from './student-filter';
+import StudentsFilter from './students-filter';
 import StudentsTable from './student-table';
 import StudentDetails from './student-details';
+import Axios, {AxiosResponse} from 'axios';
 
 interface State {
     readonly students: ReadonlyArray<Student>;
@@ -19,8 +19,8 @@ export default class StudentsApp extends React.Component<void, State> {
     }
 
     componentDidMount() {
-        axios.get('src/students.json')
-            .then(resp => resp.data)
+        Axios.get('src/students.json')
+            .then((resp: AxiosResponse) => resp.data)
             .then((students: Student[]) => {
                 this.setState(Object.assign({}, this.state, {students: students}));
             })
@@ -29,7 +29,7 @@ export default class StudentsApp extends React.Component<void, State> {
     render() {
         return (
             <div>
-                <Filter onChange={this.handleFilterChange.bind(this)}/>
+                <StudentsFilter onChange={this.handleFilterChange.bind(this)}/>
                 <StudentsTable
                     students={this.filteredStudents()}
                     selectStudent={this.handleSelectStudent.bind(this)}

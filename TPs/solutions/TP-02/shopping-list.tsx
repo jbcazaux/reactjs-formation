@@ -1,17 +1,16 @@
 import * as React from "react";
-import * as axios from "axios";
-import {Item} from "./Item";
-import {ShoppingItem} from "./shoppingItem";
+import Axios, {AxiosResponse} from "axios";
+import Item from "./item";
+import ShoppingItem from "./shopping-item";
 
-export interface Props {
+interface Props {
     readonly title: string
 }
-export interface State {
+interface State {
     readonly items: ReadonlyArray<Item>
 }
 
-
-export class ShoppingList extends React.Component<Props, State> {
+export default class ShoppingList extends React.Component<Props, State> {
 
     constructor() {
         super();
@@ -40,8 +39,8 @@ export class ShoppingList extends React.Component<Props, State> {
 
     componentDidMount() {
         console.log('component did mount');
-        axios.get('src/items.json')
-            .then(resp => resp.data)
+        Axios.get('src/items.json')
+            .then((resp: AxiosResponse) => resp.data)
             .then((items: Item[]) => {
                 this.setState({items: items});
             })

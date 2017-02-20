@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {User} from './user';
+import User from './user';
 
 interface AppContext {
     color: string;

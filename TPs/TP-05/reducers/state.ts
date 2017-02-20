@@ -1,5 +1,6 @@
-import {Item} from '../Item';
+import Item from '../item';
 
-export interface State {
+interface State {
     readonly items: ReadonlyArray<Item>;
 }
+export default State;

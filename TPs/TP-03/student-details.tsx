@@ -1,14 +1,14 @@
 import * as React from "react";
-import {Student} from "./student";
+import Student from "./student";
 
-export interface Props {
+interface Props {
     student: Student;
 }
 
-export class StudentDetails extends React.Component<Props, void> {
+export default class StudentDetails extends React.Component<Props, void> {
 
     render() {
-
+        return null; // TODO !
     }
 }
 

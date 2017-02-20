@@ -1,6 +1,6 @@
 import * as React from "react";
-import * as axios from "axios";
-import {Item} from "./Item";
+import Axios, {AxiosResponse} from "axios";
+import Item from "./item";
 
 export interface Props {
 
@@ -18,16 +18,15 @@ export class ShoppingList extends React.Component<Props, State> {
 
     componentDidMount() {
         console.log('component did mount');
-        axios.get<Item[]>('src/items.json')
-            .then(resp => resp.data)
-            .then(items => {
+        Axios.get('src/items.json')
+            .then((resp: AxiosResponse) => resp.data)
+            .then((items: Item[]) => {
                 // setter le nouvel état
             })
     }
 
     render() {
-        return (
-        )
+        return null; // TODO !
     }
 }
 
