@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as axios from 'axios';
-import {Student} from './student';
-import {Filter} from './student-filter';
-import {StudentsTable} from './student-table';
-import {StudentDetails} from './student-details';
+import Student from './student';
+import Filter from './student-filter';
+import StudentsTable from './student-table';
+import StudentDetails from './student-details';
 
 interface State {
     readonly students: ReadonlyArray<Student>;
@@ -11,7 +11,7 @@ interface State {
     readonly selectedStudent: Student;
 }
 
-export class StudentsApp extends React.Component<void, State> {
+export default class StudentsApp extends React.Component<void, State> {
 
     constructor() {
         super();
@@ -38,15 +38,15 @@ export class StudentsApp extends React.Component<void, State> {
             </div>)
     }
 
-    private handleFilterChange(filter: string) {
+    handleFilterChange(filter: string) {
         this.setState(Object.assign({}, this.state, {filter}));
     }
 
-    private handleSelectStudent(student: Student) {
+    handleSelectStudent(student: Student) {
         this.setState(Object.assign({}, this.state, {selectedStudent: student}));
     }
 
-    private filteredStudents() {
+    filteredStudents() {
         return this.state.students.filter(s =>
         (s.firstname.indexOf(this.state.filter) > -1) || (s.lastname.indexOf(this.state.filter) > -1))
     }
